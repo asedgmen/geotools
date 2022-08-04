@@ -1554,7 +1554,7 @@ public class JoiningJDBCFeatureSource extends JDBCFeatureSource {
         getDataStore().encodeTableName(querySchema.getTypeName(), countSQL, query.getHints());
         if (!query.getFilter().equals(Filter.INCLUDE)) {
             FilterToSQL toSql = createFilterToSQL(querySchema);
-            countSQL.append(toSql.encodeToString(query.getFilter()));
+            countSQL.append(" " + toSql.encodeToString(query.getFilter()));
             if (toSql instanceof PreparedFilterToSQL) toSQLRef.set((PreparedFilterToSQL) toSql);
         }
         String countQuery = countSQL.toString();
